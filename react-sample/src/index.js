@@ -1,17 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+
 import './index.css';
 import reducer from './reducers';
-import App from '../src/components/App';
-import reportWebVitals from './reportWebVitals';
+import EventsIndex from '../src/components/events_index';
+// import registerServiceWorker from './registerServiceWorker';
 
-const store = createStore(reducer);
+const store = createStore(reducer, applyMiddleware(thunk));
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <EventsIndex />
   </Provider>,
   document.getElementById('root')
 );
+// registerServiceWorker();
